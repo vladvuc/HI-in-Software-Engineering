@@ -1,0 +1,110 @@
+#### Software Engineering ####
+##############################
+@prefix : <http://example.org/ont/se#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/ont/se> .
+
+<http://example.org/ont/se> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/ont/se/hasRequirement
+:hasRequirement rdf:type owl:ObjectProperty ;
+                rdfs:domain :Project ;
+                rdfs:range :Requirement .
+
+###  http://example.org/ont/se/isDevelopedIn
+:isDevelopedIn rdf:type owl:ObjectProperty ;
+               rdfs:domain :Project ;
+               rdfs:range :Technology .
+
+###  http://example.org/ont/se/isResponsibleFor
+:isResponsibleFor rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Stakeholder ;
+                  rdfs:range :Deliverable .
+
+###  http://example.org/ont/se/contributesTo
+:contributesTo rdf:type owl:ObjectProperty ;
+               rdfs:domain :Stakeholder ;
+               rdfs:range :Project .
+
+###  http://example.org/ont/se/precedes
+:precedes rdf:type owl:ObjectProperty ;
+          rdfs:domain :SoftwareDevelopmentCycle ;
+          rdfs:range :SoftwareDevelopmentCycle .
+
+###  http://example.org/ont/se/dependsOn
+:dependsOn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Requirement ;
+           rdfs:range :Requirement .
+
+###  http://example.org/ont/se/identifies
+:identifies rdf:type owl:ObjectProperty ;
+            rdfs:domain :Risk ;
+            rdfs:range :Requirement .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/ont/se/Project
+:Project rdf:type owl:Class .
+
+###  http://example.org/ont/se/Stakeholder
+:Stakeholder rdf:type owl:Class .
+
+###  http://example.org/ont/se/Requirement
+:Requirement rdf:type owl:Class .
+
+###  http://example.org/ont/se/SoftwareDevelopmentCycle
+:SoftwareDevelopmentCycle rdf:type owl:Class .
+
+###  http://example.org/ont/se/Deliverable
+:Deliverable rdf:type owl:Class .
+
+###  http://example.org/ont/se/Technology
+:Technology rdf:type owl:Class .
+
+###  http://example.org/ont/se/Risk
+:Risk rdf:type owl:Class .
+
+#################################################################
+#    Individuals
+#################################################################
+
+### Example individual instances
+
+:Project1 rdf:type :Project ;
+          :hasRequirement :Req1, :Req2 ;
+          :isDevelopedIn :Tech1 ;
+          :precedes :Cycle2 .
+
+:Sam rdf:type :Stakeholder ;
+              :isResponsibleFor :Deliv1 ;
+              :contributesTo :ProjectX .
+
+:Python rdf:type :Requirement ;
+      :dependsOn :Req2 .
+
+:Typescript rdf:type :Requirement .
+
+:PreparationPhase rdf:type :SoftwareDevelopmentCycle ;
+        :precedes :ProjectMidpoint .
+
+:ProjectMidpoint rdf:type :SoftwareDevelopmentCycle ;
+        :precedes :ProjectClosing .
+
+:ProjectClosing rdf:type :SoftwareDevelopmentCycle .
+
+:SQLDatabase rdf:type :Deliverable .
+
+:WhatsAppAPI rdf:type :Technology .
+
+:Risk1 rdf:type :Risk ;
+       :identifies :Req1 .

@@ -1,0 +1,159 @@
+@prefix : <http://example.org/ont/pm#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/ont/pm> .
+
+<http://example.org/ont/pm> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/ont/pm/hasTask
+:hasTask rdf:type owl:ObjectProperty ;
+         rdfs:domain :Phase ;
+         rdfs:range :Task .
+
+###  http://example.org/ont/pm/hasPhase
+:hasPhase rdf:type owl:ObjectProperty ;
+          rdfs:domain :Project ;
+          rdfs:range :Phase .
+
+###  http://example.org/ont/pm/dependsOn
+:dependsOn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Task ;
+           rdfs:range :Task .
+
+###  http://example.org/ont/pm/precedes
+:precedes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Phase ;
+          rdfs:range :Phase .
+
+###  http://example.org/ont/pm/isResponsibleFor
+:isResponsibleFor rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Stakeholder ;
+                  rdfs:range :Task .
+
+###  http://example.org/ont/pm/involves
+:involves rdf:type owl:ObjectProperty ;
+          rdfs:domain :Task ;
+          rdfs:range :Stakeholder .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/ont/pm/Project
+:Project rdf:type owl:Class .
+
+###  http://example.org/ont/pm/Phase
+:Phase rdf:type owl:Class .
+
+###  http://example.org/ont/pm/Task
+:Task rdf:type owl:Class .
+
+###  http://example.org/ont/pm/Stakeholder
+:Stakeholder rdf:type owl:Class .
+
+#################################################################
+#    Individuals
+#################################################################
+
+### Preparation Phase
+:PreparationPhase rdf:type :Phase ;
+                  :hasTask :DefineFinalScope, :Expectations, :RiskAnalysis, :Dependencies, :InvolvedPeople, :TeamAssembly, :TicketsMilestones, :TechOps, :ExternalKickOff .
+
+:DefineFinalScope rdf:type :Task .
+:Expectations rdf:type :Task .
+:RiskAnalysis rdf:type :Task .
+:Dependencies rdf:type :Task ;
+              :dependsOn :DefineFinalScope .
+:InvolvedPeople rdf:type :Task ;
+                :dependsOn :Expectations .
+:TeamAssembly rdf:type :Task ;
+              :dependsOn :InvolvedPeople .
+:TicketsMilestones rdf:type :Task ;
+                   :dependsOn :TeamAssembly .
+:TechOps rdf:type :Task ;
+         :dependsOn :TeamAssembly .
+:ExternalKickOff rdf:type :Task ;
+                 :dependsOn :TicketsMilestones, :TechOps .
+
+### Project Midpoint
+:ProjectMidpoint rdf:type :Phase ;
+                 :hasTask :InternalPlan, :UpdatesEvaluations, :BestPractice, :Learnings, :SwitchingWithPM, :ManageScopeCreep, :PossibleOpportunities, :FurtherDevelopment, :Reevaluation .
+
+:InternalPlan rdf:type :Task .
+:UpdatesEvaluations rdf:type :Task ;
+                    :dependsOn :InternalPlan .
+:BestPractice rdf:type :Task ;
+              :dependsOn :UpdatesEvaluations .
+:Learnings rdf:type :Task ;
+           :dependsOn :BestPractice .
+:SwitchingWithPM rdf:type :Task ;
+                 :dependsOn :Learnings .
+:ManageScopeCreep rdf:type :Task ;
+                  :dependsOn :SwitchingWithPM .
+:PossibleOpportunities rdf:type :Task ;
+                       :dependsOn :ManageScopeCreep .
+:FurtherDevelopment rdf:type :Task ;
+                    :dependsOn :PossibleOpportunities .
+:Reevaluation rdf:type :Task ;
+              :dependsOn :FurtherDevelopment .
+
+### Project Closing
+:ProjectClosing rdf:type :Phase ;
+                :hasTask :RetroPlanning, :Evaluation, :CreateValue, :DataStrategy, :DataAnalysis, :ExploitingData, :DrawingUpRoadmap, :KnowledgeSharingSession, :ScheduledSessions .
+
+:RetroPlanning rdf:type :Task .
+:Evaluation rdf:type :Task ;
+            :dependsOn :RetroPlanning .
+:CreateValue rdf:type :Task ;
+             :dependsOn :Evaluation .
+:DataStrategy rdf:type :Task ;
+              :dependsOn :CreateValue .
+:DataAnalysis rdf:type :Task ;
+              :dependsOn :DataStrategy .
+:ExploitingData rdf:type :Task ;
+                :dependsOn :DataAnalysis .
+:DrawingUpRoadmap rdf:type :Task ;
+                  :dependsOn :ExploitingData .
+:KnowledgeSharingSession rdf:type :Task ;
+                         :dependsOn :DrawingUpRoadmap .
+:ScheduledSessions rdf:type :Task ;
+                   :dependsOn :KnowledgeSharingSession .
+
+### Example Project
+:ProjectAmsterdam rdf:type :Project ;
+              :hasPhase :PreparationPhase, :ProjectMidpoint, :ProjectClosing .
+
+### Stakeholders
+:StakeholderAlex rdf:type :Stakeholder ;
+              :isResponsibleFor :DefineFinalScope, :Expectations, :RiskAnalysis, :InternalPlan, :Evaluation .
+
+:StakeholderBenny rdf:type :Stakeholder ;
+              :isResponsibleFor :Dependencies, :InvolvedPeople, :TeamAssembly, :UpdatesEvaluations, :CreateValue .
+
+:StakeholderCharlie rdf:type :Stakeholder ;
+              :isResponsibleFor :TicketsMilestones, :TechOps, :ExternalKickOff, :BestPractice, :DataStrategy .
+
+:StakeholderDelti rdf:type :Stakeholder ;
+              :isResponsibleFor :SwitchingWithPM, :ManageScopeCreep, :PossibleOpportunities, :Learnings, :DataAnalysis .
+
+:StakeholderEpsiloni rdf:type :Stakeholder ;
+              :isResponsibleFor :FurtherDevelopment, :Reevaluation, :RetroPlanning, :ExploitingData, :DrawingUpRoadmap, :KnowledgeSharingSession, :ScheduledSessions .
+
+### Phase Dependencies
+:PreparationPhase :precedes :ProjectMidpoint .
+:ProjectMidpoint :precedes :ProjectClosing .
+
+#################################################################
+#    Relationships
+#################################################################
+
+### Phase Dependencies
+:PreparationPhase :precedes :ProjectMidpoint .
+:ProjectMidpoint :precedes :ProjectClosing .
