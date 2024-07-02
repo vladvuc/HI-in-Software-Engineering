@@ -1,0 +1,248 @@
+digraph G {
+    rankdir=LR;
+
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=blue;
+    label="Project Management S6 - Detecting possibilities";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    train_2 [label="train"];
+    receive_2 [label="receive"];
+    classify_2 [label="classify"];
+    generate_2 [label="generate"];
+    rank_2 [label="rank"];
+    infer_2 [label="infer"];    
+    predict_2 [label="predict"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    model_2 [label="model"];
+    input_result [label="input result"];
+    plan_for_future [label="plan for future"];
+    classification_result_2 [label="classification result"];
+    ranking_results [label="ranking results"];
+    inferences [label="inferences"];
+    prediction_results [label="prediction results"];
+
+    node[shape=plaintext];
+    historical_data_2 [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">historical <br /> data</TD></TR>
+    </TABLE>
+    >]
+    feedback [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">feedback</TD></TR>
+    </TABLE>
+    >]
+    pr_goals [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">project goals</TD></TR>
+    </TABLE>
+    >]
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    pr_goals -> train_2
+    
+    historical_data_2 -> train_2
+    train_2 -> model_2
+
+    feedback -> receive_2
+    receive_2 -> input_result
+
+    input_result -> classify_2
+    model_2 -> classify_2
+
+    classify_2 -> classification_result_2
+
+    model_2 -> generate_2
+    generate_2 -> plan_for_future
+
+    classification_result_2 -> rank_2
+    plan_for_future -> rank_2
+    
+    rank_2 -> ranking_results
+    ranking_results -> infer_2
+    infer_2 -> inferences
+    inferences -> predict_2
+
+    predict_2 -> prediction_results
+
+    
+    subgraph Cluster_0 {
+        style=dotted;
+        color=black;
+        label="Recognition";
+        receive_2;
+        train_2;
+        model_2
+        input_result;
+        classify_2
+        classification_result_2
+
+    }
+
+    subgraph Cluster_1 {
+        style=dotted;
+        color=black;
+        label="Generate";
+        generate_2;
+        plan_for_future;
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        label="Reasoning";
+        color=black;
+        rank_2;
+        ranking_results;
+        infer_2;
+        inferences;
+        predict_2;
+        prediction_results;
+    }
+
+    }
+
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=chocolate;
+    label="Project Management S5 - Learnings and Scope Change";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    train [label="train"];
+    receive [label="receive"];
+    monitor [label="monitor"];
+    classify [label="classify"];
+    predict [label="predict"];
+    generate [label="generate"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    challenges [label="challenges"];
+    tasks [label="tasks"];
+    responsibilities [label="responsibilities"];
+    success_criteria [label="success criteria"];
+    user_input [label="user input"];
+    commits [label="commits"];
+    gitrepo [label="git repo"];
+    monitoring_results [label="monitoring results"];
+    model [label="model"];
+    classification_result [label="classification result"];
+    scope [label="scope"];
+    report [label="report"];
+    insights [label="insights"];
+    possible_imacts [label="possible impacts"];
+    knolwedge_area [label="knowledge area"];
+    challenge_graphs [label="predicted challenges"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    documentation [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">project documentation</TD></TR>
+    </TABLE>
+    >];
+    hist_data [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">historical_data</TD></TR>
+    </TABLE>
+    >];
+    previous_reflections [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">previous reflections</TD></TR>
+    </TABLE>
+    >];
+
+    // PART: EDGES
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    documentation -> train
+    hist_data -> train
+    previous_reflections -> train
+    train -> model
+
+    user_input -> receive
+    receive -> tasks;
+    receive -> responsibilities;
+    receive -> success_criteria;
+
+    gitrepo -> monitor
+    commits -> monitor
+
+    monitor -> monitoring_results
+
+    monitoring_results -> classify
+    tasks -> classify
+    responsibilities -> classify
+    success_criteria -> classify
+
+    classify -> classification_result
+
+    model -> predict
+    classification_result -> predict
+
+    predict -> challenges
+
+    challenges -> generate
+
+    generate -> report
+    generate -> scope
+    report -> knolwedge_area
+    report -> insights
+    report -> possible_imacts
+    report -> challenge_graphs
+
+    // Define subgraph for grouping with a dashed border
+
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Recollection";
+        color=black;
+        hist_data
+        documentation
+        previous_reflections
+        train;
+        receive;
+        tasks;
+        success_criteria
+        responsibilities;
+    }
+
+    subgraph Cluster_4 {
+        style=dotted;
+        label="Monitoring";
+        color=black;
+        monitor;
+        gitrepo;
+        commits;
+    }
+
+    subgraph Cluster_5 {
+        style=dotted;
+        color=black;
+        label="Prediction";
+        monitoring_results;
+        predict;
+        challenges;
+        classification_result;
+        model;
+        classify;
+    }
+
+    subgraph Cluster_6 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        generate;
+        report;
+        scope;
+        insights;
+        possible_imacts;
+        knolwedge_area;
+        challenge_graphs;
+    }
+
+    }
+
+}
+

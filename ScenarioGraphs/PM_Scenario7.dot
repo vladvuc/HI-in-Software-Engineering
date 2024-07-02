@@ -1,0 +1,109 @@
+digraph G {
+    rankdir=LR;
+
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=darkturquoise;
+    label="Project Management S7 - Data Analysis";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    receive [label="receive"];
+    filter [label="filter"];
+    assess [label="assess"];
+    analyze [label="analyze"];
+    decision_making [label="decision making"];
+    generate [label="generate"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    data [label="data"];
+    filtered_data [label="filtered data"];
+    results [label="results"];
+    analysis_results [label="analysis results"];
+    insights [label="insights"];
+    manner [label="manner"];
+    graphs [label="graphs"];
+    communication_type [label="communication type"];
+    report [label="report"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    preferences [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">preferences</TD></TR>
+    </TABLE>
+    >];
+    strategy [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">data strategy</TD></TR>
+    </TABLE>
+    >];
+
+    // PART: EDGES
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    receive -> data;
+    data -> filter;
+    preferences -> filter;
+    filter -> filtered_data;
+    filtered_data -> assess;
+    strategy -> assess;
+    assess -> results;
+    filtered_data -> analyze;
+    results -> analyze;
+    analyze -> analysis_results;
+
+    analysis_results -> decision_making;
+    decision_making -> insights;
+    decision_making -> manner;
+    decision_making -> graphs;
+    decision_making -> communication_type
+
+    communication_type -> generate
+    graphs -> generate
+    manner -> generate
+    insights -> generate
+    generate -> report
+
+
+    // Define subgraph for grouping with a dashed border
+
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Recollection";
+        color=black;
+       receive;
+       data;
+       filter;
+        assess;
+        preferences;
+        results;
+        filtered_data;
+        strategy
+    }
+
+    subgraph Cluster_4 {
+        style=dotted;
+        label="Reasoning";
+        color=black;
+        analysis_results
+        analyze
+        decision_making
+        communication_type
+        graphs
+        manner
+        insights
+    }
+
+    subgraph Cluster_5 {
+        style=dotted;
+        color=black;
+        label="Communication";
+      generate;
+        report;
+    }
+
+    }
+
+}
+

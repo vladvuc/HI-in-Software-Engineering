@@ -1,0 +1,318 @@
+digraph G {
+    rankdir=LR;
+
+    # PART : SCENARIO 2
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=blue;
+    label="Software Engineering S2 - Making an Implementation Plan";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    obtain [label="obtain"];
+    decompose_2 [label="decompose"];
+    compose_2 [label="compose"];
+    present_2 [label="present"];
+    specify_2 [label="specify"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    architetual_components [label="architectural components"];
+    feasability [label="feasability"];
+    project_scope [label="project scope"];
+    technical_diagram [label="technical diagram"];
+    data_models [label="data models"];
+    user_mockups [label="user mockups"];
+    API_specs [label="API specs"];
+    approval [label="Ask for approval"];
+
+    node[shape=plaintext];
+    PM_Scenario_1 [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Results from PM <br /> Scenario 1</TD></TR>
+    </TABLE>
+    >]
+    Project_Scope [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Project Scope PM <br /> Scenario 1</TD></TR>
+    </TABLE>
+    >]
+    pr_goals [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">project goals</TD></TR>
+    </TABLE>
+    >]
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    PM_Scenario_1 -> obtain;
+    pr_goals -> obtain;
+    Project_Scope -> compose_2;
+    obtain -> feasability;
+    obtain -> project_scope
+    Project_Scope -> decompose_2;
+    decompose_2 -> architetual_components;
+
+    architetual_components -> compose_2;
+    feasability -> compose_2;
+    project_scope -> compose_2;
+
+    compose_2 -> technical_diagram
+
+    technical_diagram -> specify_2
+    specify_2 -> data_models
+    specify_2 -> user_mockups
+    specify_2 -> API_specs
+
+    API_specs -> present_2
+    user_mockups -> present_2
+    data_models -> present_2
+
+    present_2 -> approval
+
+    
+    subgraph Cluster_0 {
+        style=dotted;
+        color=black;
+        label="Recollection";
+        pr_goals;
+        PM_Scenario_1;
+        obtain;
+        decompose_2;
+        Project_Scope;
+        architetual_components;
+        feasability;
+        project_scope;
+        compose_2;
+        technical_diagram;
+        specify_2;
+        data_models;
+        user_mockups;
+        API_specs;
+    }
+
+    subgraph Cluster_1 {
+        style=dotted;
+        color=black;
+        label="Communication";
+       present_2;
+         approval;
+    }
+
+    }
+
+    # PART : SCENARIO 1
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=green;
+    label="Software Engineering S1 - Requirements and Needs";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    receive [label="receive"];
+    recollect [label="recollect"];
+    decompose [label="decompose"];
+    predict_3 [label="predict"];
+    compute [label="compute"];
+    generate [label="generate"];
+    present_3 [label="present"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    results_PM4 [label="results PM Scenario 4"];
+    user_input [label="user input"];
+    functional_requirements [label="functional requirements"];
+    non_functional_requirements [label="non-functional requirements"];
+    data [label="data"];
+    small_tasks [label="small tasks"];
+    prediction_results [label="prediction results"];
+    software_resources [label="software resources"];
+    hardware_resources [label="hardware resources"];
+    personal [label="personal"];
+    list_of_requirements [label="list of requirements"];
+    list_of_tasks [label="list of tasks"];
+    response_3 [label="response"];
+    report [label="report"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    user_stories[ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">User stories</TD></TR>
+    </TABLE>
+    >];
+    feasability[ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Feasability from PM Scenario 1</TD></TR>
+    </TABLE>
+    >];
+    technical_requirements[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Dependencies from PM Scenario 2</TD></TR>
+    </TABLE>
+    >];
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    user_stories -> receive;
+    user_input -> recollect;
+    recollect -> functional_requirements;
+    recollect -> non_functional_requirements;
+    non_functional_requirements -> decompose
+    functional_requirements -> decompose;
+
+    decompose -> small_tasks
+    receive -> data;
+
+    small_tasks -> predict_3
+    data -> predict_3
+    technical_requirements -> predict_3
+    feasability -> predict_3
+    results_PM4 -> predict_3
+
+    predict_3 -> prediction_results
+    prediction_results -> compute
+
+    compute -> software_resources
+    compute -> hardware_resources
+    compute -> personal
+
+    software_resources -> generate
+    hardware_resources -> generate
+    personal -> generate
+
+    generate -> response_3
+    response_3 -> present_3
+
+    present_3 -> report
+    present_3 -> list_of_requirements
+    present_3 -> list_of_tasks
+
+
+    // Define subgraph for grouping with a dashed border
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Recollection";
+        color=black;
+        user_input;
+        recollect;
+        functional_requirements;
+        non_functional_requirements;
+        user_stories;
+        receive;
+        data;
+    }
+
+    subgraph Cluster_4 {
+        style=dotted;
+        label="Decomposition / Reasoning";
+        color=black;
+        decompose;
+        small_tasks;
+        technical_requirements;
+        feasability;
+        results_PM4;
+    }
+
+    subgraph Cluster_5 {
+        style=dotted;
+        color=black;
+        label="Prediction";
+        predict_3;
+        prediction_results;
+        compute;
+        software_resources;
+        hardware_resources;
+        personal;
+
+    }
+
+    subgraph Cluster_10 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        generate;
+        response_3;
+        present_3;
+        report;
+        list_of_requirements;
+        list_of_tasks;
+    }
+
+    }
+
+        # PART : SCENARIO 3
+    subgraph Cluster_Top_3 {
+    style=rounded;
+    fillcolor=white;
+    color=chocolate;
+    label="Software Engineering S3 - Team Assembly";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    identify [label="identify"];
+    specify [label="specify"];
+    select [label="select"];
+    compose [label="compose"];
+    specify [label="specify"];
+    present [label="present"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    roles [label="roles"];
+    responsibilities [label="responsibilities"];
+    communication_channel [label="communication channel"];
+    people_invovled [label="people involved"];
+    response [label="response"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    people_DB [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">People Database</TD></TR>
+    </TABLE>
+    >];
+    PM_3_Results [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Results from <br /> PM Scenario 3</TD></TR>
+    </TABLE>
+    >];
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    people_DB -> identify;
+    PM_3_Results -> identify;
+    identify -> people_invovled;
+    people_invovled -> specify;
+    specify -> roles;
+    specify -> responsibilities;
+    roles -> select
+    responsibilities -> select
+    select -> communication_channel
+    communication_channel -> compose
+    compose -> response
+    response -> present
+
+    // Define subgraph for grouping with a dashed border
+
+    subgraph Cluster_2 {
+        style=dotted;
+        label="Reasoning";
+        color=black;
+        PM_3_Results;
+        identify
+        people_invovled
+        specify
+        roles
+        responsibilities;
+        people_DB;
+    }
+
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Communicating";
+        color=black;
+        select;
+        communication_channel;
+        compose;
+        response;
+        present;
+    }
+
+    }
+
+}
+

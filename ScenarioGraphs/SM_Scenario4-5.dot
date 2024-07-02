@@ -1,0 +1,297 @@
+digraph G {
+    rankdir=LR;
+
+    # PART : SCENARIO 2
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=blue;
+    label="Software Engineering S5 - Reassesment";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    recollect [label="recollect"];
+    verify [label="verify"];
+    predict_2 [label="predict"];
+    decide [label="decide"];
+    generate_2 [label="generate"];
+    present_2 [label="present"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    user_input_2 [label="user input"];
+    pull_requests [label="pull requests"];
+    ticket_review [label="ticket review"];
+    milestones_completion [label="milestones completion"];
+    time_estimations    [label="time estimations"];
+    verification_results [label="verification results"];
+    data_model [label="data model"];
+    adjustment_plan [label="adjustment plan"];
+    adjustment_report [label="adjustment report"];
+    risks [label="risks"];
+    potential_issues [label="potential issues"];
+    report_2 [label="report"];
+
+    node[shape=plaintext];
+    completed_tasks [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">completed tasks</TD></TR>
+    </TABLE>
+    >]
+
+    pending_tasks [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">pending goals</TD></TR>
+    </TABLE>
+    >]
+
+    bugs [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">bugs report</TD></TR>
+    </TABLE>
+    >]
+
+    change_requests [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">change request</TD></TR>
+    </TABLE>
+    >]
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    user_input_2 -> recollect;
+    completed_tasks -> recollect;
+
+    milestones_completion -> recollect;
+    pull_requests -> recollect;
+    ticket_review -> recollect;
+
+    time_estimations -> verify;
+    completed_tasks -> verify;
+    pending_tasks -> verify;
+
+    verify -> verification_results
+    recollect -> data_model;
+
+    data_model -> decide
+    verification_results -> decide
+
+    change_requests -> decide;
+    bugs -> decide;
+    decide -> adjustment_plan
+    decide -> adjustment_report
+
+    verification_results -> predict_2
+    data_model -> predict_2
+    predict_2 -> risks
+    predict_2 -> potential_issues
+
+    potential_issues -> generate_2
+    risks -> generate_2
+    adjustment_plan -> generate_2
+    adjustment_report -> generate_2
+
+    generate_2 -> report_2
+    report_2 -> present_2
+    
+    subgraph Cluster_4 {
+        style=dotted;
+        color=black;
+        label="Recollection";
+        recollect;
+        milestones_completion;
+        pull_requests;
+        ticket_review;
+    }
+
+    subgraph Cluster_6 {
+        style=dotted;
+        color=black;
+        label="Prediction";
+        predict_2;
+        decide;
+        adjustment_plan
+        adjustment_report;
+        data_model;
+        change_requests;
+        bugs;
+        risks;
+        potential_issues;
+    }
+
+    subgraph Cluster_5 {
+        style=dotted;
+        color=black;
+        label="Communication";
+       present_2;
+       generate_2;
+       report_2;
+    }
+
+    subgraph Cluster_9 {
+        style=dotted;
+        color=black;
+        label="Verification";
+       verify;
+       completed_tasks;
+    pending_tasks;
+         time_estimations;
+    }
+
+    }
+
+    # PART : SCENARIO 1
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=green;
+    label="Software Engineering S4 -  Infrastructure Design and Implementation";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    specify [label="specify"];
+    train [label="train"];
+    design [label="design"];
+    select [label="select"];
+    predict [label="predict"];
+    decompose [label="decompose"];
+    generate [label="generate"];
+    present [label="present"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    decomposed_requirements [label="decomposed requirements"];
+    results [label="results"];
+    repositories [label="repositories"];
+    databases [label="databases"];
+    networks [label="networks"];
+    cloud_servies [label="cloud services"];
+    list_of_requirements [label="list of requirements"];
+    prediciton_results [label="prediction results"];
+    tickets [label="tickets"];
+    tasks [label="tasks"];
+    assignments [label="assignedTo"];
+    deadlines [label="deadlines"];
+    report [label="report"];
+    approval [label="approval"];
+    review [label="review"];
+    implementation_plan [label="implementation plan"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    technical_requirements[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Technical requirements <br /> from PM Scenario 2</TD></TR>
+    </TABLE>
+    >];
+    bg_data[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">background knowledge <br /> and previous estimations</TD></TR>
+    </TABLE>
+    >];
+    est_sc_4[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">Time estimation <br /> from Scenario 4 (PM)</TD></TR>
+    </TABLE>
+    >];
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    technical_requirements -> specify;
+    bg_data -> train;
+    
+    train -> results;
+    specify -> decomposed_requirements;
+
+    decomposed_requirements -> design;
+    results -> design
+
+    design -> list_of_requirements
+    design -> implementation_plan
+
+    list_of_requirements -> select;
+
+    select -> repositories;
+    select -> databases;
+    select -> networks;
+    select -> cloud_servies;
+
+    est_sc_4 -> predict;
+
+    predict -> prediciton_results;
+
+    prediciton_results -> decompose;
+
+    decompose -> tickets;
+    decompose -> tasks;
+    decompose -> assignments;
+    decompose -> deadlines;
+
+    deadlines -> generate;
+    assignments -> generate;
+    tasks -> generate;
+    tickets -> generate;
+
+    generate -> report;
+
+    report -> present;
+
+    implementation_plan -> generate;
+
+    present -> review;
+    present -> approval;
+    cloud_servies -> generate;
+    repositories -> generate;
+    networks -> generate;
+    databases -> generate;
+
+    // Define subgraph for grouping with a dashed border
+    subgraph Cluster_1 {
+        style=dotted;
+        label="Recollection";
+        color=black;
+        technical_requirements;
+        bg_data;
+        train;
+        specify;
+        results;
+        
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        label="Decomposition";
+        color=black;
+        decomposed_requirements;
+        design;
+        decompose;
+        list_of_requirements;
+        select;
+        deadlines;
+        assignments;
+        tasks;
+        tickets;
+        repositories;
+        databases;
+        networks;
+        cloud_servies;
+        implementation_plan;
+    }
+
+        subgraph Cluster_11 {
+        style=dotted;
+        label="Prediction";
+        color=black;
+        est_sc_4
+        predict;
+        prediciton_results;
+    }
+
+    subgraph Cluster_3 {
+        style=dotted;
+        color=black;
+        label="Communication";
+        generate;
+        report;
+        present;
+        review;
+        approval;
+    }
+
+}
+
+}
+

@@ -1,0 +1,240 @@
+digraph G {
+    rankdir=LR;
+
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=yellow;
+    label="Project Management S4 - Making a plan";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    train_2 [label="train"];
+    receive_2 [label="receive"];
+    classify_2 [label="classify"];
+    identify_2 [label="identify"];
+    assess_2 [label="assess"];
+    predict [label="predict"];
+    generate_2 [label="generate"];
+    present_2 [label="present"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    model_2 [label="model"];
+    goals [label="goals"];
+    constraints [label="constraints"];
+    task_list [label="task list"];
+    technical_requirements [label="technical requirements"];
+    infrastructure [label="infrastructure"];
+    time_estimation [label="time estimation"];
+    prediction_results [label="prediction results"];
+    plan [label="plan"];
+    tasks [label="tasks"];
+    milestones [label="milestones"];
+
+    requirements [label="requirements"];
+    result_to_assess [label="results"];
+    potential_challenges [label="potential challenges"];
+    graphs [label="graphs"];
+    reports [label="reports"];
+
+    node[shape=plaintext];
+    historical_data [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">developer historical <br /> data</TD></TR>
+    </TABLE>
+    >]
+    commits [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">commits data</TD></TR>
+    </TABLE>
+    >]
+    bg_data [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">background data</TD></TR>
+    </TABLE>
+    >]
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    historical_data -> train_2
+    requirements -> train_2
+    commits -> train_2
+    train_2 -> model_2
+    receive_2 -> goals
+    receive_2 -> constraints
+    constraints -> classify_2
+    goals -> classify_2
+    model_2 -> classify_2
+
+    classify_2 -> task_list
+    classify_2 -> technical_requirements
+    classify_2 -> infrastructure
+
+    infrastructure -> identify_2
+    technical_requirements -> identify_2
+    task_list -> identify_2
+
+    identify_2 -> result_to_assess
+    bg_data -> assess_2
+    historical_data -> assess_2
+    result_to_assess -> assess_2
+
+    assess_2 -> time_estimation
+    time_estimation -> predict
+    predict -> plan
+    predict -> tasks
+    predict -> milestones
+    predict -> potential_challenges
+
+    plan -> generate_2
+    tasks -> generate_2
+    milestones -> generate_2
+    potential_challenges -> generate_2
+    generate_2 -> prediction_results
+    prediction_results -> present_2
+    present_2 -> graphs
+    present_2 -> reports
+    
+    subgraph Cluster_1 {
+        style=dotted;
+        color=black;
+        label="Recognition";
+        requirements;
+        commits;
+        historical_data;
+        train_2;
+        receive_2;
+        model_2;
+        constraints;
+        goals;
+        classify_2;
+        infrastructure;
+        task_list
+        technical_requirements;
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        color=black;
+        label="Predicting";
+        identify_2;
+        result_to_assess;
+        bg_data;
+        assess_2;
+        time_estimation;
+        predict;
+        plan;
+        tasks;
+        milestones;
+        potential_challenges;
+    }
+
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        generate_2;
+        prediction_results;
+        present_2;
+        graphs;
+        reports;
+    }
+
+    }
+
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=greenyellow;
+    label="Project Management S3 - Identify skills and team Assembly";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    asses [label="assess"];
+    identify [label="identify"];
+    train [label="train"];
+    classify [label="classify"];
+    present [label="present"];
+    generate [label="generate"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    skills [label="skills"];
+    team_list [label="team list"];
+    model [label="model"];
+    match_score [label="match score"];
+    tickets [label="tickets"];
+    plan_strategy [label="plan stragegy"];
+    people_involved [label="people involved"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    background_data [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">background data</TD></TR>
+    </TABLE>
+    >];
+    availability [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">availability</TD></TR>
+    </TABLE>
+    >];
+    people_data [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">people data</TD></TR>
+    </TABLE>
+    >];
+
+    // PART: EDGES
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    background_data -> asses;
+    asses -> skills;
+    skills -> identify;
+    availability -> identify
+    identify -> team_list
+    team_list -> classify;
+    people_data -> train;
+    train -> model
+    model -> classify
+    classify -> match_score
+    match_score -> present
+    present -> generate
+    generate -> tickets
+    generate -> plan_strategy
+    generate -> people_involved
+
+    // Define subgraph for grouping with a dashed border
+    subgraph Cluster_4 {
+        style=dotted;
+        label="Monitoring";
+        color=black;
+        background_data;
+        identify;
+        asses;
+        skills;
+    }
+
+    subgraph Cluster_5 {
+        style=dotted;
+        color=black;
+        label="Reasoning";
+        team_list;
+        model;
+        train;
+        availability;
+        people_data;
+        classify;
+        match_score;
+    }
+
+    subgraph Cluster_6 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        present;
+        generate;
+        tickets;
+        plan_strategy;
+        people_involved;
+    }
+
+
+    }
+
+}
+

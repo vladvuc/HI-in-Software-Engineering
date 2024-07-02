@@ -1,0 +1,125 @@
+digraph G {
+    rankdir=LR;
+
+    # PART : SCENARIO 2
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=darkseagreen
+    label="Software Engineering S8 -  Acceptance / Definition";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    obtain [label="obtain"];
+    specify [label="specify"];
+    compose [label="compose"];
+    verify [label="verify"];
+    present [label="present"];
+    generate [label="generate"];
+    decide [label="decide"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    software_functionality [label="software functionality"];
+    endpoints [label="endpoints"];
+    contract [label="contract"];
+    software_compliance [label="software compliance"];
+    industry_standards [label="industry standards"];
+    software_packages [label="software packages"];
+    API_documentation [label="API documentation"];
+    strategy [label="strategy"];
+    requests [label="requests /  responses"];
+    authentication [label="authentication"];
+    quality_data [label="quality data"];
+    report [label="report"];
+    final_contract_proposal [label="draft contract proposal"];
+
+    node[shape=plaintext];
+
+    user_testing_data[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">user testing data</TD></TR>
+    </TABLE>
+    >];
+
+    previous_data[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">previous deployment <br />strategy data</TD></TR>
+    </TABLE>
+    >];
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    user_testing_data -> obtain;
+    software_compliance -> verify;
+    industry_standards -> verify;
+    specify -> endpoints;
+    specify -> requests;
+    specify -> authentication;
+
+    endpoints -> compose;
+    requests -> compose;
+    authentication -> compose;
+    obtain -> quality_data;
+    quality_data -> compose;
+
+    compose -> contract;
+    verify -> contract;
+
+    generate -> API_documentation;
+    generate -> software_packages;
+    generate -> software_functionality;
+
+    software_functionality -> present;
+    API_documentation -> present;
+    software_packages -> present;
+
+    decide -> strategy;
+
+    previous_data -> decide;
+    contract -> present;
+    strategy -> present;
+
+    present -> report;
+    present -> final_contract_proposal;
+
+    subgraph Cluster_0 {
+        style=dotted;
+        color=black;
+        label="Composition";
+        obtain;
+        specify;
+        compose;
+        user_testing_data;
+        endpoints;
+        requests;
+        authentication;
+        quality_data;
+        contract;
+    }
+
+    subgraph Cluster_1 {
+        style=dotted;
+        color=black;
+        label="Verification";
+       verify;
+       software_compliance;
+        industry_standards;
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        color=black;
+        label="Communication";
+       present;
+       generate;
+       decide;
+
+         previous_data;
+         
+         software_functionality;
+         software_packages;
+         API_documentation;
+         strategy;
+         report;
+            final_contract_proposal;
+    }
+
+    }
+
+}

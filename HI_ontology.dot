@@ -1,0 +1,76 @@
+digraph G {
+    layout=neato;
+    node [shape=ellipse, style=filled, fillcolor="#FFB703", fontname="Glacial Indifference", fontsize=12];
+
+    // Main nodes
+    Agent [label="Agent", pos="0,0!"];
+    HIScenario [label="HI Scenario", pos="4,1!"];
+
+    // Agent nodes
+    node [shape=ellipse, style=filled, fillcolor="#9A130E", fontcolor=ghostwhite]
+    "Artificial Agent" [label="Artificial Agent", pos="-2,2!"];
+    "Human Agent" [label="Human Agent", pos="1,2!"];
+
+    // Text Labels
+    node [shape=box, style=filled, fillcolor=ghostwhite, fontname="Glacial Indifference" fontsize=9, fontcolor="#023047"];
+    AI_text [label="Recommendation System\nIntelligent System\nChatbot\nML Model\nTesting Tools\nProject Management Bots", pos="-2,3!"];
+    
+    Human_Text [label="Programmer / Developer\nSenior Lead\nProject Manager\nTester\nDesigners\nClient", pos="1,3!"];
+    
+    Ethical_Text [label="Fiarness (biases)\nPrivacy in Company\nOwnership\nRoles within Team\nMoral Dilemmas (AI Decision)\nRp;es/Teamwork\nLong-Term system Maintenance\nSecurity", pos="4,4.1!"];
+    
+    Interaction_Type_text [label="Collaboration\nApproval\nFeedback\nExperise\nCooperation\nCommunication\nConflict\nDirective (H -> AI; AI -> H)\nEducational", pos="5,-3.22!"];
+    
+    Interaction_Task_Text [label="Giving tasks\nReport Making\nCode Review\nTest/QA\nMonitoring and Deployment\nDocumentation Generating", pos="3,-3!"];
+    
+    ProcessingTypeText [label="Recognition\nReasoning\nRecollection\nKnowledge Sharing\nAsking for Information\nCollaborative Learning\nDecision-making", pos="1.040,-4.5!"];
+
+    CapabilityText [label="Monitoring\nCollaborativness\nCommunication\nPredicting\nRecognition\nReasoning\nMaking choices\nLearning on input\nRequirement Analysis\nMetrics Collection\nEstimation\nRisk Analysis\nDecision-making\nPredict Phase\nPlanning", pos="-4,-1.5!"];
+
+    MethodText [label="Hybrid\nStatistical\nSymbolic\nFuzzy Logic\nNeural networks\nExpert System\nRule-based\nMachine Learning\nNatural Language Processing", pos="-2,-4.72!"];
+
+    ContextText [label="Communication\nUnderstanding commits\nCompany structure\nProcess symbolic personal growth\nTeam Dynamics\nProject Management\nProject Specifics\nOrganization Structure\nTechnical Context", pos="7,3!"];
+
+    DomainText [label="Software Engineering\nProject Management", pos="7.2,1!"];
+    
+    EndGoalText [label="Gives Instructions\nGives Time Estimation\nGives Risk Analysis\nDecision-making\nDetermine skills requireed\nImprove software quality\nIncrease efficiency\nIncrease team collaboration\nIncrease team communication", pos="7.4,-0.7!"]
+
+    // Nodes connected to HIScenario
+    node [shape=ellipse, style=filled, fontname="Glacial Indifference", fontsize=11, fillcolor="#219EBC", fontcolor="white"];
+    "Ethical\nConsideration" [pos="4,3!"];
+    Context [label="Context", pos="6,2!"];
+    Domain [label="Domain", pos="6,1!"];
+    EndGoal [label="EndGoal", pos="6,0!"];
+    Interaction [label="Interaction", pos="4,-1!"];
+    InteractionTTask [label="Interaction Task", pos="3,-2!"];
+    InteractionType [label="Interaction Type", pos="5,-2!"];
+
+    // Nodes connected to Agent
+    Capability [label="Capability", pos="-4,0!"];
+    "Information Processing" [pos="-1,-2!"];
+    Method [label="Method", pos="-2,-3.5!"];
+    Type [label="Processing Type", pos="1,-3.5!"];
+
+    // Connecting the main nodes
+    HIScenario -> Agent [label="Has", fontcolor="#023047"];
+
+    // Nodes connected to Agent
+    Agent -> Capability [label="capability", fontcolor="#023047"];
+    "Artificial Agent" -> Agent [label="subClassOf", style=dashed, pos="1,0!", fontcolor="#023047"];
+    Agent [label="Agent", pos="0,0!"];
+    "Human Agent" -> Agent [label="subClassOf", style=dashed, fontcolor="#023047"];
+    Agent -> "Information Processing" [label="processing_information", fontcolor="#023047"];
+    Interaction -> Agent [label="interacting_agent", fontcolor="#023047"];
+    "Information Processing" -> Method [label="method", fontcolor="#023047"];
+    "Information Processing" -> Type [label="processing", fontcolor="#023047"];
+
+    // Nodes connected to Main Node 2
+    HIScenario -> Context
+    HIScenario -> "Ethical\nConsideration"
+    HIScenario -> Domain
+    HIScenario -> EndGoal
+    HIScenario -> Interaction
+    Interaction -> InteractionTTask
+    Interaction -> InteractionType
+
+}

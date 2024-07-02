@@ -1,0 +1,188 @@
+digraph G {
+    rankdir=LR;
+
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=blueviolet;
+    label="Project Management S2 - Risk and Dependencies Assessment";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    recognize [label="recognize"];
+    classify_2 [label="classify"];
+    rank_node [label="rank"];
+    obtain [label="obtain"];
+    predict_2 [label="predict"];
+    generate_2 [label="generate"];
+    train_2 [label="train"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    risks [label="risks"];
+    classification_list [label="classification list"];
+    result [label="result"];
+    model_2 [label="model"];
+    result_2 [label="list of requirements"];
+    response_2 [label="response"]
+    embeddings_2 [label="S1 embeddings"];
+
+    node[shape=plaintext];
+    background_data_2 [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">previous projects</TD></TR>
+    </TABLE>
+    >]
+    list_of_requirements [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">list of <br /> requirements</TD></TR>
+    </TABLE>
+    >]
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    embeddings_2 -> recognize;
+    recognize -> risks
+    risks -> classify_2
+    classify_2 -> classification_list
+    classification_list -> rank_node
+    rank_node -> result
+    result -> obtain
+    list_of_requirements -> obtain
+    obtain -> model_2
+    model_2 -> predict_2
+    predict_2 -> result_2
+    result_2 -> generate_2
+    generate_2 -> response_2
+    train_2 -> model_2
+    background_data_2 -> train_2
+    
+    subgraph Cluster_6 {
+        style=dotted;
+        label="Recognition";
+        recognize;
+        risks;
+        classify_2;
+        classification_list;
+        rank_node;
+        result;
+    }
+
+    subgraph Cluster_7 {
+        style=dotted;
+        label="Predicting";
+        background_data_2;
+        train_2;
+        model_2;
+        predict_2;
+        result_2;
+        obtain;
+        list_of_requirements;
+    }
+
+    subgraph Cluster_8 {
+        style=dotted;
+        label="Communication";
+        generate_2;
+        response_2;
+    }
+
+    }
+
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=cadetblue;
+    label="Project Management S3 - Monitoring and Feedback";
+    label="Project Management S1 - Initializing the Project";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    train [label="train"];
+    receive [label="receive"];
+    predict [label="predict"];
+    induce [label="induce"];
+    classify [label="classify"];
+    generate [label="generate"];
+    assess [label="assess"]
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    user_input [label="user input"];
+    embeddings [label="embeddings"];
+    new_data [label="new data"];
+    feasability [label="feasability"];
+    response [label="response"];
+    action [label="action"];
+    model [label="model"];
+    historical_data [label="historical data"];
+    requirements [label="requirements"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    background_data [ label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">background data</TD></TR>
+    </TABLE>
+    >];
+
+    // PART: EDGES
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    user_input -> receive;
+    historical_data -> train;
+    receive -> new_data;
+    new_data -> classify;
+    train -> embeddings;
+    background_data -> train;
+    embeddings -> classify;
+    classify -> background_data
+    classify -> action;
+    action -> assess;
+    assess -> model;
+    model -> predict;
+    predict -> requirements;
+    requirements -> induce;
+    induce -> feasability;
+    feasability -> generate;
+    generate -> response;
+
+    // Define subgraph for grouping with a dashed border
+    subgraph Cluster_1 {
+        style=dotted;
+        label="Reinformcement Learning";
+        color=black;
+        historical_data;
+        train;
+        receive;
+        embeddings;
+        new_data;
+        classify;
+        background_data;
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        color=black;
+        label="Monitoring";
+        action;
+        assess;
+        model;
+
+    }
+
+    subgraph Cluster_3 {
+        style=dotted;
+        label="Predicting";
+        color=black;
+        predict;
+        requirements;
+        induce;
+        feasability;
+    }
+
+    subgraph Cluster_4 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        response;
+        generate;
+    }
+
+    }
+
+}
+

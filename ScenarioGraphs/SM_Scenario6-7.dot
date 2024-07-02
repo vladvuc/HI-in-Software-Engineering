@@ -1,0 +1,233 @@
+digraph G {
+    rankdir=LR;
+
+    # PART : SCENARIO 2
+    subgraph Cluster_Top_2 {
+    style=rounded;
+    color=maroon
+    label="Software Engineering S7 - Feedback Gathering";
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    receive [label="receive"];
+    decompose [label="decompose"];
+    ranking [label="rank"];
+    compare [label="compare"];
+    recollect [label="recollect"];
+    generate [label="generate"];
+    present [label="present"];
+
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    feedback [label="feedback"];
+    interviews [label="interviews"];
+    user_surwey [label="user survey"];
+    testing_session [label="testing session"];
+    data [label="data"];
+    actionable_insights [label="actionable insights"];
+    priority_data [label="prioritized data"];
+    project_impact [label="project impact"];
+    comparison_results [label="comparison results"];
+    user_engagement [label="user engagement"];
+    satisfaction_metrics [label="satisfaction metrics"];
+    metric_user_data [label="metric user data"];
+    report [label="report"];
+
+    node[shape=plaintext];
+
+    est_scenario_4[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">software features <br /> from SE Scenario 4 (PM)</TD></TR>
+    </TABLE>
+    >];
+
+    scenario_pm_6[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">prediction results <br /> from PM Scenario 6 (PM)</TD></TR>
+    </TABLE>
+    >];
+
+    
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    feedback -> receive;
+    interviews -> receive;
+    user_surwey -> receive;
+    testing_session -> receive;
+
+    receive -> data;
+    data -> decompose;
+
+    decompose -> actionable_insights;
+    actionable_insights -> ranking;
+
+    ranking -> priority_data;
+    ranking -> project_impact;
+
+    est_scenario_4 -> compare;
+    scenario_pm_6 -> compare;
+
+    compare -> comparison_results
+    satisfaction_metrics -> recollect
+    user_engagement -> recollect
+
+    recollect -> metric_user_data
+    metric_user_data -> generate
+    comparison_results -> generate
+
+    project_impact -> generate
+    priority_data -> generate
+
+    generate -> report
+    report -> present
+
+    subgraph Cluster_0 {
+        style=dotted;
+        color=black;
+        label="Recollection";
+        feedback;
+        interviews;
+        user_surwey;
+        testing_session;
+        receive;
+    }
+
+    subgraph Cluster_1 {
+        style=dotted;
+        color=black;
+        label="Decomposition";
+        data;
+        decompose;
+        actionable_insights
+        ranking;
+        project_impact;
+        priority_data;
+    }
+
+    subgraph Cluster_2 {
+        style=dotted;
+        color=black;
+        label="Classification";
+        compare;
+        est_scenario_4;
+        scenario_pm_6;
+        comparison_results;
+        recollect;
+        metric_user_data;
+        user_engagement;
+        satisfaction_metrics;
+    }
+
+    subgraph Cluster_3 {
+        style=dotted;
+        color=black;
+        label="Communication";
+        generate;
+        report;
+        present;
+    }
+
+    }
+
+        # PART : SCENARIO 6
+    subgraph Cluster_Top {
+    style=rounded;
+    fillcolor=white;
+    color=darkseagreen;
+    label="Software Engineering S6 -  Reflection / Validation / Testing";
+    // Agent steps in nodes
+    node[shape=ellipse, fontname="CMU Serif", fontsize=12];
+    verify [label="verify"];
+    compute [label="compute"];
+    identify [label="identify"];
+    perceive [label="perceive"];
+    recollect_2 [label="recollect"];
+    generate_2 [label="generate"];
+    present_2 [label="present"];
+
+    // User input
+    node[shape=box, fontname="CMU Serif", fontsize=12];
+    non_functional_requirements [label="non-functional requirements"];
+    functional_requirements [label="functional requirements"];
+    test_results [label="test results"];
+    usability_issues [label="usability issues"];
+    user_feedback [label="user feedback"];
+    report_2 [label="report"];
+    improvement_areas [label="improvement areas"];
+    sorted_data [label="sorted data"];
+    feedback_data [label="feedback data"];
+        
+    // Knowledge nodes
+    node[shape=plaintext];
+    scenario_1_results[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">results from <br /> from SE Scenario 1</TD></TR>
+    </TABLE>
+    >];
+
+    test_cases[label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD SIDES="TB">test cases</TD></TR>
+    </TABLE>
+    >];
+    
+
+    edge [fontname="CMU Serif", fontsize=12, color="#000000", style=filled]
+    non_functional_requirements -> verify;
+    functional_requirements -> verify;
+    scenario_1_results -> verify
+    test_cases -> compute
+    compute -> test_results;
+    identify -> usability_issues
+    identify -> improvement_areas
+    user_feedback -> perceive;
+    generate_2 -> report_2
+    improvement_areas -> recollect_2
+    usability_issues -> recollect_2
+    report_2 -> present_2
+
+    verify -> sorted_data;
+    recollect_2 -> sorted_data;
+
+    sorted_data -> generate_2;
+    test_results -> identify;
+
+    perceive -> feedback_data;
+    feedback_data -> recollect_2
+
+    subgraph Cluster_10 {
+        style=dotted;
+        label="Verification";
+        color=black;
+        verify;
+        non_functional_requirements;
+        functional_requirements;
+        scenario_1_results;
+    }
+
+    subgraph Cluster_15 {
+        style=dotted;
+        label="Prediction";
+        color=black;
+        user_feedback;
+        improvement_areas;
+        usability_issues;
+        test_cases;
+        test_results;
+        compute;
+        identify;
+        perceive;
+        feedback_data;
+        recollect_2;
+    }
+
+    subgraph Cluster_16 {
+        style=dotted;
+        label="Communication";
+        color=black;
+        sorted_data;
+        generate_2;
+        report_2;
+        present_2;
+    }
+
+}
+
+}
